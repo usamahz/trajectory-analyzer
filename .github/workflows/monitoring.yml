@@ -1,0 +1,33 @@
+# TODO: Currently disabled - This workflow monitors the Streamlit app health every 30 minutes 
+# and sends Slack notifications on failures
+name: Monitoring
+
+on:
+  workflow_dispatch:  # Manual triggers only while disabled
+  # schedule:
+  #   - cron: '*/30 * * * *'  # Run every 30 minutes
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Streamlit app health
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.STREAMLIT_APP_URL }})
+          if [ $response -ne 200 ]; then
+            echo "App is not responding properly. HTTP status: $response"
+            exit 1
+          fi
+
+  notify:
+    needs: [health_check]
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Notify Slack on failure
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

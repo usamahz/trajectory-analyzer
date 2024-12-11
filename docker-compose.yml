@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  opteran_analyser:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./:/workspace
+      - ~/.ros:/root/.ros
+      - ./logs:/workspace/logs
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PYTHONPATH=/opt/ros/humble/lib/python3.10/site-packages:/workspace
+    network_mode: "host"
+    command: bash -c "source /opt/ros/humble/setup.bash && python3 scripts/analyse_localisation.py"

@@ -1,0 +1,22 @@
+# Analysis Configuration
+analysis:
+  segment_duration: 60  # Duration of each segment in seconds
+  trajectory:
+    max_association_diff: 1.0  # Maximum time difference for trajectory association
+    max_pose_count_diff: 500   # Maximum allowed difference in pose counts between files
+
+# ROS2 Configuration
+ros2:
+  storage:
+    id: 'sqlite3'
+    serialization_format: 'cdr'
+
+# Logging Configuration
+logging:
+  file:
+    max_size: 10485760  # Creates a new log file when the size reaches 10MB
+    backup_count: 5 # Keeps 5 backup files
+
+# Topics Configuration
+topics:
+  pose_msg_type: 'geometry_msgs/msg/PoseStamped' 
