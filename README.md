@@ -1,4 +1,4 @@
-# Opteran Localisation Analysis Tool
+# Trajectory Localisation Analysis Tool
 
 A comprehensive tool for analysing localisation performance in ROS2 systems. This tool processes ROS2 bags containing pose data, performs trajectory analysis, and provides detailed metrics and visualisations.
 
@@ -38,8 +38,8 @@ A comprehensive tool for analysing localisation performance in ROS2 systems. Thi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/usamahz/opt-final.git #Skip this step if you already have the repository cloned
-   cd opteran-localisation-analyser
+   git clone https://github.com/usamahz/trajectory-analyzer.git #Skip this step if you already have the repository cloned
+   cd trajectory-analyzer
    ```
 
 2. Build the Docker containers:
@@ -116,7 +116,3 @@ The project proposes a comprehensive CI/CD pipeline using modern DevOps tools an
 8. **Monitoring and Reporting**
    - Streamlit / Prometheus + Grafana for real-time pipeline monitoring
    - Slack for CI/CD event notifications (build status, failures, nightly runs)
-
-##
-
-__I will present the detailed implementation of the CI/CD pipeline in the interview + the analysis of the case study.__
